@@ -80,4 +80,9 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
+
+    public function testLogin()
+    {
+        return "ok";
+    }
 }
