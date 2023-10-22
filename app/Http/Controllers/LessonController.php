@@ -3,17 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lesson;
+use App\Transformer\LessonTransformer;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
+
+    protected $lessonTransformer;
+
+    //将字段转换器注入到
+    public function __construct(LessonTransformer $lessonTransformer)
+    {
+        $this->lessonTransformer = $lessonTransformer;
+    }
+
     public function index()
     {
         $lessons = Lesson::all();
         return response()->json([
             'status' => 'success',
             'status_code' => 200,
-            'data' => $this->transformCollection($lessons),
+            'data' => $this->lessonTransformer->transformCollection($lessons->toArray()),
         ]);
 
     }
@@ -24,22 +34,9 @@ class LessonController extends Controller
         return response()->json([
             'status' => 'success',
             'status_code' => 200,
-            'data' => $this->transform($lesson),
+            'data' => $this->lessonTransformer->transform($lesson),
         ]);
     }
 
 
-    public function transformCollection($lessons)
-    {
-        return array_map([$this, 'transform'], $lessons->toArray());
-    }
-
-    public function transform($lesson)
-    {
-        return [
-            'title'   => $lesson['title'],
-            'content' => $lesson['body'],
-            'is_free' => (boolean) $lesson['free'],
-        ];
-    }
 }
