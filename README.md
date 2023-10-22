@@ -6,3 +6,6 @@
 ## php artisan make:factory LessonFactory --model=Lesson
 ## php artisan db:seed --class=LessonSeeder 
 
+# 2、初步实现api
+## 路由，group和resource
+## 
