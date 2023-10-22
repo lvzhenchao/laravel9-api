@@ -22,4 +22,8 @@
 # 6、api用户认证
 ## 框架自带的用户认证 'auth.basic'；构造方法注入这个中间件
 ## jwt 参考https://jwt-auth.readthedocs.io/en/develop/quick-start/
-## 
+
+# 7、中间件
+## 使用时记得在kernel添加映射
+
+# 8、OAuth
