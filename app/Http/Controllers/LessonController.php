@@ -9,13 +9,37 @@ class LessonController extends Controller
 {
     public function index()
     {
+        $lessons = Lesson::all();
+        return response()->json([
+            'status' => 'success',
+            'status_code' => 200,
+            'data' => $this->transformCollection($lessons),
+        ]);
 
-        return Lesson::all();
     }
 
     public function show($id)
     {
         $lesson = Lesson::findOrFail($id);
-        return $lesson;
+        return response()->json([
+            'status' => 'success',
+            'status_code' => 200,
+            'data' => $this->transform($lesson),
+        ]);
+    }
+
+
+    public function transformCollection($lessons)
+    {
+        return array_map([$this, 'transform'], $lessons->toArray());
+    }
+
+    public function transform($lesson)
+    {
+        return [
+            'title'   => $lesson['title'],
+            'content' => $lesson['body'],
+            'is_free' => (boolean) $lesson['free'],
+        ];
     }
 }

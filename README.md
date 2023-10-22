@@ -8,4 +8,7 @@
 
 # 2、初步实现api
 ## 路由，group和resource
-## 
+
+# 3、api字段映射
+## response()->json
+## 字段映射
