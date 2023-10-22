@@ -20,4 +20,6 @@
 # 5、统一处理错误返回
 
 # 6、api用户认证
-## 框架自带的用户认证 'auth.basic'；构造方法注入这个中间件 
+## 框架自带的用户认证 'auth.basic'；构造方法注入这个中间件
+## jwt 参考https://jwt-auth.readthedocs.io/en/develop/quick-start/
+## 
