@@ -15,6 +15,7 @@ class LessonController extends ApiController
     public function __construct(LessonTransformer $lessonTransformer)
     {
         $this->lessonTransformer = $lessonTransformer;
+        $this->middleware('auth.basic', ['only' => ['store', 'update']]);
     }
 
     public function index()
@@ -26,6 +27,19 @@ class LessonController extends ApiController
             'data' => $this->lessonTransformer->transformCollection($lessons->toArray()),
         ]);
 
+    }
+
+    public function store(Request $request)
+    {
+        if (!$request->get('title') || !$request->get('body')) {
+            return $this->setStatusCode(422)->responseError('验证失败');
+        }
+
+        Lesson::create($request->all());
+        return $this->setStatusCode(201)->response([
+            'status' => 'success',
+            'message' => 'lesson created'
+        ]);
     }
 
     public function show($id)

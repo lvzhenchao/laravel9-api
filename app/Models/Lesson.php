@@ -10,4 +10,6 @@ class Lesson extends Model
     use HasFactory;
 
 //    protected $hidden = ['title'];
+
+    protected $fillable = ['title', 'body'];
 }
