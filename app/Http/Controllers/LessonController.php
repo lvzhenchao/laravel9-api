@@ -6,7 +6,7 @@ use App\Models\Lesson;
 use App\Transformer\LessonTransformer;
 use Illuminate\Http\Request;
 
-class LessonController extends Controller
+class LessonController extends ApiController
 {
 
     protected $lessonTransformer;
@@ -30,10 +30,15 @@ class LessonController extends Controller
 
     public function show($id)
     {
-        $lesson = Lesson::findOrFail($id);
+        $lesson = Lesson::find($id);
+
+        if (!$lesson) {
+            return $this->responseNotFound();
+        }
+
+
         return response()->json([
             'status' => 'success',
-            'status_code' => 200,
             'data' => $this->lessonTransformer->transform($lesson),
         ]);
     }
