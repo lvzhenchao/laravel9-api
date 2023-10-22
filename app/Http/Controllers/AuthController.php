@@ -81,7 +81,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function testLogin()
+    public function test()
     {
         return "ok";
     }

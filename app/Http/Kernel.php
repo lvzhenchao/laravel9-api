@@ -46,7 +46,8 @@ class Kernel extends HttpKernel
     ];
 
     protected $routeMiddleware = [
-        'jwt_login' => \App\Http\Middleware\CheckLogin::class
+        'jwt_login' => \App\Http\Middleware\CheckLogin::class,
+        'age' => \App\Http\Middleware\CheckAge::class
     ];
     /**
      * The application's middleware aliases.

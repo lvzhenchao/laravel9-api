@@ -40,3 +40,10 @@ Route::group([
 
 });
 
+//Route::get('/auth/test', [AuthController::class, 'test'])->middleware('jwt_login');
+
+
+Route::get('test-middleware/{age}',function(){
+    return "年龄符合要求";
+})->middleware('age');
+
